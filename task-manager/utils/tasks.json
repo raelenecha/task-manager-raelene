@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1,
+    "title": "Complete wireframe sketches",
+    "status": "pending",
+    "createdBy": "raelene@example.com",
+    "dueDate": "2024-12-20"
+  },
+  {
+    "id": 2,
+    "title": "Prepare API endpoints for Create Task",
+    "status": "pending",
+    "createdBy": "shahina@example.com",
+    "dueDate": "2024-12-18"
+  },
+  {
+    "id": 3,
+    "title": "Implement View Tasks UI",
+    "status": "completed",
+    "createdBy": "raelene@example.com",
+    "dueDate": "2024-12-15"
+  },
+  {
+    "id": 4,
+    "title": "Fix JSON validation for invalid dates",
+    "status": "pending",
+    "createdBy": "hamsitha@example.com",
+    "dueDate": "2024-12-22"
+  },
+  {
+    "id": 5,
+    "title": "Integrate user creation flow",
+    "status": "completed",
+    "createdBy": "ayana@example.com",
+    "dueDate": "2024-12-10"
+  },
+  {
+    "title": "task2",
+    "dueDate": "2025-11-20",
+    "createdBy": "john@gmail.com",
+    "status": "pending",
+    "id": "1764122308335066"
+  },
+  {
+    "title": "task3",
+    "dueDate": "2025-11-28",
+    "createdBy": "john@gmail.com",
+    "status": "pending",
+    "id": "1764122360462005"
+  },
+  {
+    "title": "Task 1",
+    "dueDate": "2025-12-10",
+    "createdBy": "shakalaka@gmail.com",
+    "status": "pending",
+    "id": "1765529076460140"
+  },
+  {
+    "title": "new task 1",
+    "dueDate": "2025-12-14",
+    "createdBy": "hamsi@gmail.com",
+    "status": "pending",
+    "id": "1765529835514158"
+  }
+]

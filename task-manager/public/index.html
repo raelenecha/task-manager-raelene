@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>TaskBuddy – Home</title>
+
+    <!-- ICONS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- EXTERNAL CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- MAIN CONTAINER -->
+    <div class="container">
+
+        <!-- HEADER BAR -->
+        <div class="header">
+            <h2 class="header-title">
+                <i class="fa-solid fa-check"></i>
+                TaskBuddy
+            </h2>
+        </div>
+
+        <!-- TASKS GRID: Pending (left) and Completed (right) -->
+        <div class="task-grid">
+
+            <!-- Pending Tasks -->
+            <div class="task-column">
+                <h3 class="section-title1">
+                    Pending Tasks
+                    <button class="add-btn">Add Task</button>
+                </h3>
+                <div id="pending-tasks"></div>
+            </div>
+
+            <!-- Completed Tasks -->
+            <div class="task-column">
+                <h3 class="section-title2">Completed Tasks</h3>
+                <div id="completed-tasks"></div>
+            </div>
+
+        </div>
+    </div>
+    <script src="/js/raelene-cha.js"></script>
+    <script>
+        // If no one is logged in, redirect to register
+        if (!localStorage.getItem("email")) {
+            window.location.href = "register.html";
+        } else {
+            getTasks();
+        }
+    </script>
+
+    <!-- ADD TASK MODAL -->
+    <div id="addTaskModal" class="modal">
+        <div class="modal-content">
+
+            <span class="close-btn">&times;</span>
+
+            <form id="taskForm">
+                <label>Task Name</label>
+                <input type="text" id="taskName">
+
+                <label>Date</label>
+                <input type="date" id="taskDate">
+
+                <button type="submit">Add Task</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/hamsitha.js"></script>
+
+    <!-- EDIT TASK MODAL -->
+    <div id="editTaskModal" class="modal">
+        <div class="modal-content">
+
+            <span class="close-btn" onclick="closeEditModal()">&times;</span>
+
+            <form id="editTaskForm" onsubmit="return false;">
+                <label>Task Name</label>
+                <input type="text" id="editTitle" maxlength="60">
+
+                <label>Date</label>
+                <input type="date" id="editDueDate">
+
+                <!-- error message -->
+                <p id="editMessage" style="color:red; font-size:13px;"></p>
+
+                <button type="button" id="saveTaskBtn">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="js/ayana.js"></script>
+
+</body>
+
+</html>
