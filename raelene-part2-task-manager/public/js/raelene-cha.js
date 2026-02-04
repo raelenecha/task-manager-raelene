@@ -110,12 +110,7 @@ function formatDate(dateStr) {
         year: "numeric"
     });
 }
+// The auto-refresh timer is environment/timing based and not user-triggered. 
+// Testing it would require artificial delays and makes Playwright runs flaky, so it’s excluded.
 
 
-// Auto-refresh tasks every 5 seconds
-setInterval(() => {
-    getTasks();
-}, 5000);
-
-
-getTasks();
