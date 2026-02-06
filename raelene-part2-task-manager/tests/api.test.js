@@ -3,7 +3,7 @@ const fs = require("fs").promises;
 const path = require("path");
 
 // Import app + server (your index.js starts the server)
-const { app, server } = require("../index");
+const { app } = require("../index");
 
 // Same tasks.json path used by RaeleneUtil.js
 const TASKS_FILE = path.join(__dirname, "..", "utils", "tasks.json");
@@ -30,9 +30,7 @@ afterAll(async () => {
     } else {
         try { await fs.unlink(TASKS_FILE); } catch (e) { }
     }
-    // Close the server after tests
-    server.close();
-});
+    });
 // Tests for viewing tasks via API
 describe("API Testing – View Tasks", () => {
     beforeEach(async () => {

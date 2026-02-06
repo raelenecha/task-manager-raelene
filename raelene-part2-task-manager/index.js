@@ -33,13 +33,25 @@ app.post('/add-task', addTask);
 const { viewTasks } = require('./utils/RaeleneUtil');
 app.get('/view-tasks', viewTasks);
 
-server = app.listen(PORT, function () {
-  /* istanbul ignore next */ // logging only
-  const address = server.address();
-  /* istanbul ignore next */ // logging only
-  const baseUrl = `http://${address.address == "::" ? 'localhost' : address.address}:${address.port}`;
-  /* istanbul ignore next */ // logging only
-  console.log(`Demo project at: ${baseUrl}`);
-});
 
-module.exports = { app, server }
+let server = null;
+
+// Only start the server when NOT running Jest tests
+if (process.env.NODE_ENV !== "test") {
+  server = app.listen(PORT, function () {
+    /* istanbul ignore next */ // logging only
+    const address = server.address();
+
+    /* istanbul ignore next */ // logging only
+    if (address && typeof address === "object") {
+      const host = address.address === "::" ? "localhost" : address.address;
+      const baseUrl = `http://${host}:${address.port}`;
+      console.log(`Demo project at: ${baseUrl}`);
+    } else {
+      console.log(`Demo project running on port ${PORT}`);
+    }
+  });
+}
+
+module.exports = { app, server };
+
