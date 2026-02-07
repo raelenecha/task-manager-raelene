@@ -38,7 +38,7 @@ let server = null;
 
 // Only start the server when NOT running Jest tests
 if (process.env.NODE_ENV !== "test") {
-  server = app.listen(PORT, function () {
+  server = app.listen(PORT, "0.0.0.0", function () {
     /* istanbul ignore next */ // logging only
     const address = server.address();
 
