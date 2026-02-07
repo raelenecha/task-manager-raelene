@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: resource-mgmt  # Name of the container
-          image: resource-mgmt-app  # Docker image to use for the container
+          image: resource-mgmt-app:{{BUILD_NUMBER}}  # Docker image to use for the container
           imagePullPolicy: IfNotPresent   # Do not pull from Docker Hub
           ports:
             - containerPort: 5050  # Port that the container exposes
