@@ -1,7 +1,7 @@
 // Fetch tasks from backend and display them
 async function getTasks() {
     try {
-        const response = await fetch('http://localhost:5050/view-tasks');
+        const response = await fetch('/view-tasks');
 
         // Handle backend errors (400 = corrupted data, 500 = server error)
         if (!response.ok) {
