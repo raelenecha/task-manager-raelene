@@ -1,0 +1,57 @@
+pipeline {
+  agent any
+
+  stages {
+    stage('Checkout') {
+      steps {
+        checkout scm
+      }
+    }
+
+    stage('Install Dependencies') {
+      steps {
+        bat 'npm ci'
+      }
+    }
+
+    stage('Code Quality & Tests') {
+      steps {
+        bat 'npm test'
+        bat 'npm run test-frontend'
+      }
+    }
+
+    stage('Build Docker Image') {
+      steps {
+        bat 'docker build -t taskbuddy-app .'
+      }
+    }
+
+    stage('Start Minikube') {
+      steps {
+        bat 'minikube start'
+      }
+    }
+
+    stage('Load Image to Minikube') {
+      steps {
+        bat 'minikube image load taskbuddy-app'
+      }
+    }
+
+    stage('Deploy to Kubernetes') {
+      steps {
+        bat 'kubectl apply -f deployment.yaml'
+        bat 'kubectl apply -f service.yaml'
+      }
+    }
+
+    stage('Verify Rollout') {
+      steps {
+        bat 'kubectl get pods'
+        bat 'kubectl get services'
+      }
+    }
+
+  }
+}
