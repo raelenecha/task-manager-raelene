@@ -5,11 +5,6 @@ pipeline {
 		pollSCM('H/1 * * * *')
 	}
 
-	environment {
-    KUBECONFIG = 'C:\\Users\\65911\\.kube\\config'
-		TAG = "${BUILD_NUMBER}"
-	}
-
   stages {
     stage('Checkout') {
       steps {
@@ -37,20 +32,20 @@ pipeline {
     stage('Build Docker Image') {
       steps {
         dir('raelene-part2-task-manager') {
-          bat "docker build -t taskbuddy-app:${TAG} ."
+          bat "docker build -t taskbuddy-app:${BUILD_NUMBER} ."
         }
       }
     }
 
     stage('Start Minikube') {
       steps {
-        bat 'minikube start --ports=127.0.0.1:30080:30080'
+        bat 'minikube status || minikube start --ports=127.0.0.1:30080:30080'
       }
     }
 
     stage('Load Image to Minikube') {
       steps {
-        bat "minikube image load taskbuddy-app:${TAG}"
+        bat "minikube image load taskbuddy-app:${BUILD_NUMBER}"
       }
     }
 
