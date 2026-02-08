@@ -68,4 +68,38 @@ pipeline {
       }
     }
   }
+
+  post {
+    success {
+      emailext(
+        subject: "✅ SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+        body: """
+        <p>Build <b>SUCCESS</b></p>
+        <p>
+            Job: ${env.JOB_NAME}<br>
+            Build Number: ${env.BUILD_NUMBER}<br>
+            URL: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a>
+        </p>
+        """,
+        to: "raelene.chaa@gmail.com",
+        mimeType: 'text/html'
+      )
+    }
+
+    failure {
+      emailext(
+        subject: "❌ FAILURE: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+        body: """
+        <p>Build <b>FAILED</b></p>
+        <p>
+            Job: ${env.JOB_NAME}<br>
+            Build Number: ${env.BUILD_NUMBER}<br>
+            URL: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a>
+        </p>
+        """,
+        to: "raelene.chaa@gmail.com",
+        mimeType: 'text/html'
+      )
+    }
+  }
 }
