@@ -20,7 +20,7 @@ pipeline {
       }
     }
 
-    stage('Code Quality & Tests') {
+    stage('Code Tests') {
       steps {
         dir('raelene-part2-task-manager') {
           bat 'npm test'
@@ -82,7 +82,8 @@ pipeline {
         </p>
         """,
         to: "raelene.chaa@gmail.com",
-        mimeType: 'text/html'
+        mimeType: 'text/html',
+        from: "Taskbuddy CI <raelene.chaa@gmail.com>"
       )
     }
 
@@ -98,7 +99,8 @@ pipeline {
         </p>
         """,
         to: "raelene.chaa@gmail.com",
-        mimeType: 'text/html'
+        mimeType: 'text/html',
+        from: "Taskbuddy CI <raelene.chaa@gmail.com>"
       )
     }
   }
