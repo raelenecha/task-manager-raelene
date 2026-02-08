@@ -6,6 +6,7 @@ pipeline {
 	}
 
 	environment {
+    KUBECONFIG = 'C:\\Users\\65911\\.kube\\config'
 		TAG = "${BUILD_NUMBER}"
 	}
 
