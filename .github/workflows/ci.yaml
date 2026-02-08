@@ -21,9 +21,11 @@ jobs:
         node-version: '18.17.0'
 
     - name: Install dependencies
+      working-directory: raelene-part2-task-manager
       run: npm ci
 
     - name: Run ESLint
+      working-directory: raelene-part2-task-manager
       run: npm run lint || echo "ESLint check completed and was successful"
 
   test:
@@ -40,7 +42,9 @@ jobs:
         node-version: '18.17.0'
 
     - name: Install dependencies
+      working-directory: raelene-part2-task-manager
       run: npm ci
 
     - name: Run Backend Tests
+      working-directory: raelene-part2-task-manager
       run: npm test || echo "Backend and API tests completed and were successful"
