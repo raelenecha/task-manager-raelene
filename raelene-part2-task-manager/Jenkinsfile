@@ -1,6 +1,14 @@
 pipeline {
   agent any
 
+	triggers {
+		pollSCM('H/1 * * * *')
+	}
+
+	environment {
+		TAG = "${BUILD_NUMBER}"
+	}
+
   stages {
     stage('Checkout') {
       steps {
@@ -28,7 +36,7 @@ pipeline {
     stage('Build Docker Image') {
       steps {
         dir('raelene-part2-task-manager') {
-          bat 'docker build -t taskbuddy-app .'
+          bat "docker build -t taskbuddy-app:${TAG} ."
         }
       }
     }
@@ -41,14 +49,17 @@ pipeline {
 
     stage('Load Image to Minikube') {
       steps {
-        bat 'minikube image load taskbuddy-app'
+        bat "minikube image load taskbuddy-app:${TAG}"
       }
     }
 
     stage('Deploy to Kubernetes') {
       steps {
         dir('raelene-part2-task-manager') {
-          bat 'kubectl apply -f deployment.yaml'
+          bat """
+						kubectl apply -f deployment.yaml
+						kubectl set image deployment/taskbuddy-deploy taskbuddy-app=taskbuddy-app:${BUILD_NUMBER}
+					"""
           bat 'kubectl apply -f service.yaml'
         }
       }
