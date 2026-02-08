@@ -28,9 +28,13 @@ afterAll(async () => {
     if (originalTasksFileExists) {
         await fs.writeFile(TASKS_FILE, originalTasksContent, "utf8");
     } else {
-        try { await fs.unlink(TASKS_FILE); } catch (e) { }
+        try {
+            await fs.unlink(TASKS_FILE);
+        } catch (err) {
+            console.error("Failed to delete tasks file:", err);
+        }
     }
-    });
+});
 // Tests for viewing tasks via API
 describe("API Testing – View Tasks", () => {
     beforeEach(async () => {
