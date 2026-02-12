@@ -1,11 +1,11 @@
 # Use an official Node.js runtime as a parent image
-FROM node:20
+FROM node:20-alpine
 # Set the working directory in the container
 WORKDIR /usr/src/app
 # Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
+COPY package.json package-lock.json ./
 # Install app dependencies
-RUN npm install
+RUN npm clean-install --omit=dev
 # Bundle app source
 COPY . .
 # Expose the port your app runs on

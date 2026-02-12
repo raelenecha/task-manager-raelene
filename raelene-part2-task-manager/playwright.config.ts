@@ -37,7 +37,7 @@ export default defineConfig({
     r current setting is 1, so Playwright runs everything in a single worker.
     This is stable and avoids race conditions for file-based apps (like JSON files).
   */
-  workers: 1,
+  workers: 3,
 
   /*
     HTML report is generated after the run.
